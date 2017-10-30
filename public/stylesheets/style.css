@@ -3,7 +3,9 @@
 }
 
 .thumbnail img{
-    max-height: 150px;
+    width: 150px;
+    height: auto;
+    margin: auto;
 }
 
 .thumbnail description {
