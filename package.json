@@ -8,9 +8,11 @@
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "csurf": "^1.9.0",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "mongoose": "^4.12.5",
     "morgan": "~1.9.0",

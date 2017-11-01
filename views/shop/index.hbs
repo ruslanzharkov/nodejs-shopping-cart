@@ -1,19 +1,21 @@
-<div class="row">
-    {{# each products }}
-        <div class="col-sm-6 col-md-4 main">
-            <div class="card thumbnail" style="width: 20rem;">
-                <img class="card-img-top shop-image  img-fluid" src="{{ this.imagePath }}" alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">{{ this.title }}</h4>
-                    <p class="card-text description">
-                        {{ this.description }}
-                    </p>
-                    <div class="clearfix">
-                        <div class="price pull-left">{{ this.price }}</div>
-                        <a href="#" class="btn btn-raised btn-success pull-right">Add to shopping cart</a>
+{{# each products }}
+    <div class="row">
+        {{# each this}}
+            <div class="col-sm-6 col-md-4 main">
+                <div class="card thumbnail" style="width: 20rem;">
+                    <img class="card-img-top shop-image  img-fluid" src="{{ this.imagePath }}" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ this.title }}</h4>
+                        <p class="card-text description">
+                            {{ this.description }}
+                        </p>
+                        <div class="clearfix">
+                            <div class="price pull-left">{{ this.price }}</div>
+                            <a href="#" class="btn btn-raised btn-success pull-right">Add to shopping cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     {{/each}}
-</div>
+    </div>
+{{/each}}
