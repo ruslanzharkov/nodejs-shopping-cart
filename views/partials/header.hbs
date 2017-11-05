@@ -3,7 +3,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Hidden brand</a>
+        <a class="navbar-brand" href="/">Hidden brand</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -19,10 +19,14 @@
                         <i class="fa fa-user" aria-hidden="true"></i> User Management
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">
-                            User Account
-                        </a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        {{# if login}}
+                            <a class="dropdown-item" href="/user/profile">User Account</a>
+                            <a class="dropdown-item" href="/user/logout">Logout</a>
+                        {{ else }}
+                            <a class="dropdown-item" href="/user/signup">Sign up</a>
+                            <a class="dropdown-item" href="/user/signin">Sign in</a>
+                        {{/if}}
+
                     </div>
                 </li>
             </ul>
