@@ -29,8 +29,9 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureFlash: true
 }), function (req, res, next) {
     if(req.session.oldUrl) {
-        res.redirect(req.session.oldUrl);
+        var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
+        res.redirect(oldUrl);
     } else {
         res.redirect('/user/profile');
     }
@@ -46,8 +47,9 @@ router.post('/signin', passport.authenticate('local.signin', {
     failureFlash: true
 }), function (req, res, next) {
     if(req.session.oldUrl) {
-        res.redirect(req.session.oldUrl);
+        var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
+        res.redirect(oldUrl);
     } else {
         res.redirect('/user/profile');
     }
