@@ -33,6 +33,14 @@ router.get('/add-to-cart/:id', function (req, res) {
     })
 });
 
+router.get('/reduce/:id', function (req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart');
+});
+
 router.get('/shopping-cart', function (req, res, next) {
     if(!req.session.cart) {
         return res.render('shop/shopping-cart', {products: null});
