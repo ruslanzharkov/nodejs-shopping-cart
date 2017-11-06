@@ -1,3 +1,12 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div id="success" class="alert alert-success {{#if noMessage}}invisible{{/if}}">
+            {{ successMgs }}
+        </div>
+    </div>
+</div>
+
 {{# each products }}
     <div class="row">
         {{# each this}}
