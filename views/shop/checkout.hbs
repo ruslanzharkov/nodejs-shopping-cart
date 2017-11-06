@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 main">
+        <h1>Checkout</h1>
+        <h4>Your Total: ${{total}}</h4>
+        <div id="charge-error" class="alert alert-danger invisible">
+
+        </div>
+        <form action="/checkout" method="post" id="checkout-form">
+            <div class="checkout">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="checkout">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" required>
+            </div>
+            <div class="checkout">
+                <label for="card-holder">Card Holder Name</label>
+                <input type="text" class="form-control" id="card-holder" required>
+            </div>
+            <div class="checkout">
+                <label for="card-number">Credit Card Number</label>
+                <input type="text" class="form-control" id="card-number" required>
+            </div>
+            <div class="row checkout">
+                <div class="col-md-6">
+                    <label for="card-expiry-month">Expiration Month</label>
+                    <input type="text" class="form-control" id="card-expiry-month" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="card-expiry-year">Expiration Year</label>
+                    <input type="text" class="form-control" id="card-expiry-year" required>
+                </div>
+            </div>
+            <div class="checkout">
+                <label for="card-cvc">CVC</label>
+                <input type="text" class="form-control" id="card-cvc" required>
+            </div>
+            <button class="btn btn-raised btn-success main" type="submit">Buy</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v2/"></script>
+<script src="javascripts/checkout.js"></script>
