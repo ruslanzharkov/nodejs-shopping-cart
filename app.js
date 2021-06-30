@@ -17,7 +17,7 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/shopping');
 require('./config/passport');
 
 // view engine setup
@@ -35,7 +35,10 @@ app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        useNewUrlParser: true,
+    }),
     cookie: {maxAge: 180 * 60 * 1000}
 }));
 app.use(flash());
