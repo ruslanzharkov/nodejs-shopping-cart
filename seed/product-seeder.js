@@ -2,11 +2,11 @@ var Product = require('../models/product');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/shopping');
 
 var products = [
     new Product({
-        imagePath: 'https://store.playstation.com/store/api/chihiro/00_09_000/container/MY/en/999/UP0006-CUSA01975_00-ASIAPLACEHOLDER2/1506868506000/image?_version=00_09_000&platform=chihiro&w=225&h=225&bg_color=000000&opacity=100" alt="Card image cap',
+        imagePath: 'https://image.api.playstation.com/cdn/EP0006/CUSA01934_00/uk5XKRuNjSmjw9BuhCy72WVRaOXIYOAO.png',
         title: 'Plants vs. Zombies: Garden Warfare',
         description: 'Plants vs. Zombies: Garden Warfare is a multiplayer third-person shooter and tower defense video game. It is the third game in the Plants vs. Zombies series, developed by PopCap Games and published by Electronic Arts. The game was ' +
         'released on Microsoft Windows, PlayStation 3, PlayStation 4, Xbox 360 and Xbox One. The game features co-op along ' +
@@ -14,7 +14,7 @@ var products = [
         price: 15
     }),
     new Product({
-        imagePath: 'http://cdn.edgecast.steamstatic.com/steam/apps/261570/header.jpg?t=1462923075',
+        imagePath: 'https://store-images.s-microsoft.com/image/apps.4128.13510798886186647.8c0ab761-dafd-44d5-ba8a-f32d95f7f9d6.48252971-733f-480c-b261-787206b064c1',
         title: 'Ori and the Blind Forest',
         description: 'Ori and the Blind Forest is a platform-adventure Metroidvania video game developed by Moon Studios and published by Microsoft Studios. The game was released for Microsoft Windows and Xbox One on March 2015.In the game, players ' +
         'assume control of Ori, a white guardian spirit, and Sein, the "light and eyes" of the Forest\'s Spirit Tree',
@@ -55,7 +55,7 @@ var done = 0;
 for (var i = 0; i < products.length; i++) {
     products[i].save(function(err, result) {
         done++;
-        if(done == products.length)
+        if(done === products.length)
             exit();
     });
 }

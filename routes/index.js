@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
           productChunks.push(docs.slice(i, i  + chunkSize));
         }
         res.render('shop/index', { title: 'Shopping cart', products: productChunks, successMgs: successMgs, noMessage: !successMgs });
-    });
+    }).lean();
 });
 
 router.get('/add-to-cart/:id', function (req, res) {
