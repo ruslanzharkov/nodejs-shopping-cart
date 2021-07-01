@@ -19,8 +19,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add-to-cart/:id', function (req, res) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
 
     Product.findById(productId, function (err, product) {
         if(err) {
@@ -34,16 +34,16 @@ router.get('/add-to-cart/:id', function (req, res) {
 });
 
 router.get('/reduce/:id', function (req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
     cart.reduceByOne(productId);
     req.session.cart = cart;
     res.redirect('/shopping-cart');
 });
 
 router.get('/remove/:id', function (req, res, next) {
-    var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    const productId = req.params.id;
+    const cart = new Cart(req.session.cart ? req.session.cart : {});
     cart.removeItem(productId);
     req.session.cart = cart;
     res.redirect('/shopping-cart');
@@ -53,7 +53,7 @@ router.get('/shopping-cart', function (req, res, next) {
     if(!req.session.cart) {
         return res.render('shop/shopping-cart', {products: null});
     }
-    var cart = new Cart(req.session.cart);
+    const cart = new Cart(req.session.cart);
     return res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
@@ -61,8 +61,8 @@ router.get('/checkout', isLoggedIn, function (req, res, next) {
     if(!req.session.cart) {
         return res.redirect('/shopping-cart');
     }
-    var cart = new Cart(req.session.cart);
-    var errMsg = req.flash('error')[0];
+    const cart = new Cart(req.session.cart);
+    const errMsg = req.flash('error')[0];
     return res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg});
 });
 
@@ -70,9 +70,9 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     if(!req.session.cart) {
         return res.redirect('/shopping-cart');
     }
-    var cart = new Cart(req.session.cart);
+    const cart = new Cart(req.session.cart);
 
-    var stripe = require("stripe")(
+    const stripe = require("stripe")(
         "sk_test_pVJhFSD0tie3QmfWqzusM6ib"
     );
 
@@ -86,7 +86,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
             req.flash('error', err.message);
             return res.redirect('/checkout');
         }
-        var order = new Order({
+        const order = new Order({
             user: req.user,
             cart: cart,
             address: req.body.address,
