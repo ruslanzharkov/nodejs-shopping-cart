@@ -11,22 +11,22 @@
     <div class="row">
         {{# each this}}
             <div class="col-sm-6 col-md-4 main">
-                <div class="card thumbnail" style="width: 20rem;">
+                <div class="card thumbnail">
                     <img class="card-img-top shop-image  img-fluid" src="{{ this.imagePath }}" alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">{{ this.title }}</h4>
-                        <p class="card-text description">
+                        <p class="card-text product-description">
                             {{ this.description }}
                         </p>
                         <div class="clearfix">
                             <div class="price pull-left">{{ this.price }}</div>
                             <a href="/add-to-cart/{{this._id}}" class="btn btn-raised btn-success pull-right">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Add to shopping cart
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add to cart
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-    {{/each}}
+        {{/each}}
     </div>
 {{/each}}

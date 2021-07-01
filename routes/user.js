@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var csrf = require('csurf');
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const csrf = require('csurf');
+const passport = require('passport');
 
-var Order = require ('../models/order');
-var Cart = require ('../models/cart');
+const Order = require ('../models/order');
+const Cart = require ('../models/cart');
 
-var csrfProtection = csrf();
+const csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
@@ -14,7 +14,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
         if(err) {
             return res.write('Error!');
         }
-        var cart;
+        let cart;
         orders.forEach(function (order) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
@@ -33,7 +33,7 @@ router.use('/', notLoggedIn, function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
-    var messages = req.flash('error');
+    const messages = req.flash('error');
     res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
@@ -42,7 +42,7 @@ router.post('/signup', passport.authenticate('local.signup', {
     failureFlash: true
 }), function (req, res, next) {
     if(req.session.oldUrl) {
-        var oldUrl = req.session.oldUrl;
+        const oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {
@@ -51,7 +51,7 @@ router.post('/signup', passport.authenticate('local.signup', {
 });
 
 router.get('/signin', function (req, res, next) {
-    var messages = req.flash('error');
+    const messages = req.flash('error');
     res.render('user/signin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
@@ -60,7 +60,7 @@ router.post('/signin', passport.authenticate('local.signin', {
     failureFlash: true
 }), function (req, res, next) {
     if(req.session.oldUrl) {
-        var oldUrl = req.session.oldUrl;
+        const oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
         res.redirect(oldUrl);
     } else {

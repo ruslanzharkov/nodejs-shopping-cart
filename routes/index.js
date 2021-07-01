@@ -1,17 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Product = require('../models/product');
-var Cart = require('../models/cart');
-var Order = require('../models/order');
+const Product = require('../models/product');
+const Cart = require('../models/cart');
+const Order = require('../models/order');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var successMgs = req.flash('success')[0];
+    const successMgs = req.flash('success')[0];
     Product.find(function(err, docs){
-        var productChunks = [];
-        var chunkSize = 3;
-        for (var i = 0; i < docs.length; i += chunkSize) {
+        const productChunks = [];
+        const chunkSize = 3;
+        for (let i = 0; i < docs.length; i += chunkSize) {
           productChunks.push(docs.slice(i, i  + chunkSize));
         }
         res.render('shop/index', { title: 'Shopping cart', products: productChunks, successMgs: successMgs, noMessage: !successMgs });
