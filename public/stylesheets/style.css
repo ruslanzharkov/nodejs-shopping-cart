@@ -1,10 +1,37 @@
-.main {
-    padding: 10px;
+.alerts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+@media screen and (max-width: 1650px) {
+    .games {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .games {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.game {
+    display: flex;
+    width: 400px;
+    padding: 20px;
 }
 
 .thumbnail {
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 10px;
 }
 
 

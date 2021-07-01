@@ -1,5 +1,4 @@
-<div class="row">
-    <div class="col-md-4"></div>
+<div class="row alerts">
     <div class="col-md-4">
         <div id="success" class="alert alert-success {{#if noMessage}}invisible{{/if}}">
             {{ successMgs }}
@@ -7,26 +6,26 @@
     </div>
 </div>
 
-{{# each products }}
-    <div class="row">
-        {{# each this}}
-            <div class="col-sm-6 col-md-4 main">
-                <div class="card thumbnail">
-                    <img class="card-img-top shop-image  img-fluid" src="{{ this.imagePath }}" alt="Card image cap">
-                    <div class="card-block">
-                        <h4 class="card-title">{{ this.title }}</h4>
-                        <p class="card-text product-description">
-                            {{ this.description }}
-                        </p>
-                        <div class="clearfix">
-                            <div class="price pull-left">{{ this.price }}</div>
-                            <a href="/add-to-cart/{{this._id}}" class="btn btn-raised btn-success pull-right">
-                                <i class="fa fa-gift" aria-hidden="true"></i> Add to cart
-                            </a>
+<div class="games">
+    {{# each products }}
+            {{# each this}}
+                <div class="game">
+                    <div class="card thumbnail">
+                        <img class="card-img-top shop-image  img-fluid" src="{{ this.imagePath }}" alt="Card image cap">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ this.title }}</h4>
+                            <p class="card-text product-description">
+                                {{ this.description }}
+                            </p>
+                            <div class="clearfix">
+                                <div class="price pull-left">{{ this.price }}</div>
+                                <a href="/add-to-cart/{{this._id}}" class="btn btn-raised btn-success pull-right">
+                                    <i class="fa fa-gift" aria-hidden="true"></i> Add to cart
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {{/each}}
-    </div>
-{{/each}}
+            {{/each}}
+    {{/each}}
+</div>
