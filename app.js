@@ -10,7 +10,7 @@ const session  = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const validator = require('express-validator');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 const index = require('./routes/index');
 const userRoutes = require('./routes/user');
@@ -34,9 +34,8 @@ app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        useNewUrlParser: true,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/shopping'
     }),
     cookie: {maxAge: 180 * 60 * 1000}
 }));
