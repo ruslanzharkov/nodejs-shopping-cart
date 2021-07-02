@@ -28,7 +28,7 @@ npm run migration:write
  Before running the app, you should create your own `.env` file in the root with the following variables:
 ```dotenv
 PORT=<place your port here>
-STRIPE_KEY=<your stripe test key>
+STRIPE_SECRET_KEY=<your stripe test key>
 MONGO_DB_URL=<path to mongoDB>
 ```
 
