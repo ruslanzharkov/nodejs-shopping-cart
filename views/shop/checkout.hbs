@@ -7,7 +7,7 @@
             {{errMsg}}
         </div>
         <form action="/checkout" method="post" id="checkout-form">
-            <div class="checkout">
+            <div class="main-title">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="checkout">
                 <label for="card-cvc">CVC/CVV</label>
-                <input type="text" class="form-control" id="card-cvc" maxlength="4" required>
+                <input type="password" class="form-control" id="card-cvc" maxlength="4" required>
             </div>
-            <button class="btn btn-raised btn-success main" type="submit">Buy</button>
+            <button class="btn btn-raised btn-success main button-submit" type="submit">Buy</button>
         </form>
     </div>
 </div>

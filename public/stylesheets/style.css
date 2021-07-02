@@ -103,6 +103,10 @@
     height: 400px;
 }
 
-.checkout {
+.main-title {
     padding-top: 20px;
+}
+
+.button-submit {
+    margin-top: 10px;
 }
