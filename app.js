@@ -11,17 +11,15 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const validator = require('express-validator');
 const MongoStore = require('connect-mongo');
-const dotenv = require('dotenv');
+const {mongoDbUrl} = require('./config/env');
 
-const index = require('./routes/index');
+const mainRoute = require('./routes/index');
 const userRoutes = require('./routes/user');
-
-// getting all ENV variables before starting another processes
-dotenv.config();
+const checkoutRoutes = require('./routes/checkout');
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_DB_URL);
+mongoose.connect(mongoDbUrl);
 require('./config/passport');
 
 
@@ -40,7 +38,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_DB_URL
+        mongoUrl: mongoDbUrl
     }),
     cookie: {maxAge: 180 * 60 * 1000}
 }));
@@ -55,8 +53,10 @@ app.use(function(req, res, next) {
    next();
 });
 
+
 app.use('/user', userRoutes);
-app.use('/', index);
+app.use('/', checkoutRoutes);
+app.use('/', mainRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
