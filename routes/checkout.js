@@ -20,7 +20,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     }
     const cart = new Cart(req.session.cart);
 
-    const stripe = require('stripe')(process.env.stripeSecretKey);
+    const stripe = require('stripe')(stripeSecretKey);
 
     stripe.charges.create({
         amount: cart.totalPrice * 100,
