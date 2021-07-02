@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Order = require('../models/order');
 const Cart = require('../models/cart');
+const {stripeSecretKey} = require('../config/env');
 
 router.get('/checkout', isLoggedIn, function (req, res, next) {
     if(!req.session.cart) {
@@ -19,7 +20,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     }
     const cart = new Cart(req.session.cart);
 
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const stripe = require('stripe')(process.env.stripeSecretKey);
 
     stripe.charges.create({
         amount: cart.totalPrice * 100,
