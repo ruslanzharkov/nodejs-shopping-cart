@@ -13,9 +13,10 @@ const validator = require('express-validator');
 const MongoStore = require('connect-mongo');
 const {mongoDbUrl} = require('./config/env');
 
-const mainRoute = require('./routes/index');
+const mainRoute = require('./routes/main');
 const userRoutes = require('./routes/user');
 const checkoutRoutes = require('./routes/checkout');
+const cartRoutes = require('./routes/cart');
 
 const app = express();
 
@@ -54,9 +55,10 @@ app.use(function(req, res, next) {
 });
 
 
+app.use('/', mainRoute);
 app.use('/user', userRoutes);
 app.use('/', checkoutRoutes);
-app.use('/', mainRoute);
+app.use('/', cartRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
