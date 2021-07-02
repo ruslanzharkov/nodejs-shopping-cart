@@ -15,10 +15,13 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
             return res.write('Error!');
         }
         let cart;
+
         orders.forEach(function (order) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
+            order.totalPrice = order.cart.totalPrice;
         });
+
         res.render('user/profile', { orders: orders });
     });
 });
