@@ -10,6 +10,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 @media screen and (max-width: 1650px) {
@@ -74,4 +76,29 @@
 
 .total {
     margin-left: auto;
+}
+
+#nav-header,.header {
+    background: #1f1e1e !important;
+}
+
+.nav-title {
+    color: #FFFFFF !important;
+}
+
+.header-title {
+    padding-left: 10px;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.empty img {
+    margin-top: 20px;
+    height: 400px;
 }

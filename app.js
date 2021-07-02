@@ -11,14 +11,19 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const validator = require('express-validator');
 const MongoStore = require('connect-mongo');
+const dotenv = require('dotenv');
 
 const index = require('./routes/index');
 const userRoutes = require('./routes/user');
 
+// getting all ENV variables before starting another processes
+dotenv.config();
+
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/shopping');
+mongoose.connect(process.env.MONGO_DB_URL);
 require('./config/passport');
+
 
 // engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
@@ -35,7 +40,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/shopping'
+        mongoUrl: process.env.MONGO_DB_URL
     }),
     cookie: {maxAge: 180 * 60 * 1000}
 }));

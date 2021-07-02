@@ -5,42 +5,34 @@
 
 This project work with Stripe api for Nodejs. Go to http://stripe.com/ for more information
 
-## Requiments
-  You need to install Nodejs and MongoDB
+## Requirements
+- mongodb
+- node.js
+- account on Stripe.js (for your test purchases)
 
-### package.json
- ```
- {
-  "name": "shopping-cart",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "~1.18.2",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^2.0.0",
-    "cookie-parser": "~1.4.3",
-    "csurf": "^1.9.0",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
-    "express-validator": "^4.3.0",
-    "hbs": "~4.0.1",
-    "mongoose": "^4.12.5",
-    "morgan": "~1.9.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.5",
-    "stripe": "^5.3.0"
-  }
-}
- ```
+## Used middlewares
+- connect-mongo
+- express cookie
+- nodemon
+- morgan
 
- ### Installation Guide
-  * clone this project
+## Migrations
+Current app implementation doesn't have UI for adding new products, <br/>
+but you can run script with migrations for adding some data into DB.
+
+````npm
+npm run migration:write
+````
+
+## ENV
+ Before running the app, you should create your own `.env` file in the root with the following variables:
+```dotenv
+PORT=<place your port here>
+STRIPE_KEY=<your stripe test key>
+```
+
+ ### Running
   * npm install
-  * go to localhost:3000
+  * add stripe test key to ENV file
+  * npm start
+  * open browser at `http://localhost:3000`

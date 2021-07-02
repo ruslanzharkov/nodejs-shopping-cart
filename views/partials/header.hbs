@@ -1,21 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="/">Shop of video games</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-header">
+    <div class="collapse navbar-collapse header" id="navbarTogglerDemo01">
+        <a class="navbar-brand header-title nav-title" href="/">Magazine</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-info" href="/shopping-cart" role="button">
+            <a class="btn btn-info nav-title" href="/shopping-cart" role="button">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping cart
                 <span class="badge badge-pill badge-secondary">{{session.cart.totalQty}}</span>
             </a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user" aria-hidden="true"></i> User Management
+                    <a class="nav-link dropdown-toggle nav-title" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         {{# if login}}
-                            <a class="dropdown-item" href="/user/profile">User Account</a>
+                            <a class="dropdown-item" href="/user/profile">Account</a>
                             <a class="dropdown-item" href="/user/logout">Logout</a>
                         {{ else }}
                             <a class="dropdown-item" href="/user/signup">Sign up</a>

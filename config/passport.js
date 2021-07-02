@@ -63,14 +63,16 @@ passport.use('local.signin', new LocalStrategy({
         return done(null, false, req.flash('error', messages));
     }
     User.findOne({'email': email}, function (err, user) {
+        const message = {message: 'Wrong email or password'};
+
         if(err) {
             return done(err);
         }
         if(!user) {
-            return done(null, false, {message: 'No user found.'});
+            return done(null, false, message);
         }
         if( !user.validPassword(password)) {
-            return done(null, false, {message: 'Wrong password.'});
+            return done(null, false, message);
         }
         return done(null, user);
     })
