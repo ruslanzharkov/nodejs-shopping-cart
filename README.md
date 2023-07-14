@@ -29,11 +29,11 @@ npm run migration:write
 ```dotenv
 PORT=<place your port here>
 STRIPE_SECRET_KEY=<your stripe test key>
-MONGO_DB_URL=<path to mongoDB>
+MONGO_DB_URL='mongodb://127.0.0.1:27017' or remote mongo address
 ```
 
  ### Running
   * npm install
   * add stripe test key to ENV file and to `checkout.js` (publishable not secret key for sender identification)
   * npm start
-  * open browser at `http://localhost:3000`
+  * open browser at specified PORT env variables 
