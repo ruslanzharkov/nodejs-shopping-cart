@@ -36,13 +36,23 @@
     border-radius: 10px;
 }
 
-
-.thumbnail img{
+.thumbnail img {
     width: inherit;
     height: 300px;
     object-fit: cover;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+}
+
+.thumbnail img::before {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("/icons/image-fallback.svg")
 }
 
 .thumbnail description {
