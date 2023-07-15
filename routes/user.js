@@ -1,4 +1,5 @@
 const express = require('express');
+const { body } = require('express-validator');
 
 const router = express.Router();
 const csrf = require('csurf');
@@ -27,9 +28,14 @@ router.get('/profile', isLoggedIn, function (req, res) {
   });
 });
 
-router.get('/logout', isLoggedIn, function (req, res) {
-  req.logout();
-  res.redirect('/');
+router.get('/logout', isLoggedIn, function (req, res, next) {
+  req.logout(function logoutCallback(err) {
+    if (err) { 
+      return next(err); 
+    }
+
+    res.redirect('/');
+  });
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
@@ -47,6 +53,8 @@ router.get('/signup', function (req, res) {
 
 router.post(
   '/signup',
+  body('email').notEmpty().isEmail(),
+  body('password').notEmpty().isLength({ min: 4 }),
   passport.authenticate('local.signup', {
     failureRedirect: '/user/signup',
     failureFlash: true,
@@ -73,6 +81,8 @@ router.get('/signin', function (req, res) {
 
 router.post(
   '/signin',
+  body('email').notEmpty().isEmail(),
+  body('password').notEmpty().isLength({ min: 4 }),
   passport.authenticate('local.signin', {
     failureRedirect: '/user/signin',
     failureFlash: true,

@@ -1,6 +1,12 @@
 const passport = require('passport');
 const User = require('../models/user');
 const LocalStrategy = require('passport-local').Strategy;
+const { validationResult } = require('express-validator');
+
+const ERRORS_MESSAGES = {
+  email: 'Email is invalid',
+  password: 'Password should be 4 symbols min',
+};
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -20,18 +26,16 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true,
     },
-    function (req, email, password, done) {
-      req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-      req
-        .checkBody('password', 'Invalid password')
-        .notEmpty()
-        .isLength({ min: 4 });
-      const errors = req.validationErrors();
-      if (errors) {
+    function singUp(req, email, password, done) {
+      const { errors } = validationResult(req);
+
+      if (errors.length) {
         const messages = [];
+
         errors.forEach(function (error) {
-          messages.push(error.msg);
+          messages.push(ERRORS_MESSAGES[error.param]);
         });
+
         return done(null, false, req.flash('error', messages));
       }
       User.findOne({ email: email }, function (err, user) {
@@ -66,29 +70,35 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true,
     },
-    function (req, email, password, done) {
-      req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-      req.checkBody('password', 'Invalid password').notEmpty();
-      const errors = req.validationErrors();
-      if (errors) {
+    function signIn(req, email, password, done) {
+      const { errors } = validationResult(req);
+
+      if (errors.length) {
         const messages = [];
+
         errors.forEach(function (error) {
-          messages.push(error.msg);
+          console.log(ERRORS_MESSAGES[error.param]);
+          messages.push(ERRORS_MESSAGES[error.param]);
         });
+
         return done(null, false, req.flash('error', messages));
       }
+
       User.findOne({ email: email }, function (err, user) {
         const message = { message: 'Wrong email or password' };
 
         if (err) {
           return done(err);
         }
+
         if (!user) {
           return done(null, false, message);
         }
+
         if (!user.validPassword(password)) {
           return done(null, false, message);
         }
+        
         return done(null, user);
       });
     }
