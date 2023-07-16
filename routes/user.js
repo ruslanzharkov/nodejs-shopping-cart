@@ -30,8 +30,8 @@ router.get('/profile', isLoggedIn, function (req, res) {
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
   req.logout(function logoutCallback(err) {
-    if (err) { 
-      return next(err); 
+    if (err) {
+      return next(err);
     }
 
     res.redirect('/');
