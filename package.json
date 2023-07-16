@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "migration:write": "node migrations/products-migration.js"
+    "start": "nodemon ./bin/server.js",
+    "migration:write": "node migrations/products-migration.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -28,6 +29,12 @@
     "stripe": "^5.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "nodemon": "^3.0.1",
+    "prettier": "3.0.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

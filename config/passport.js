@@ -1,11 +1,11 @@
-const passport = require('passport');
-const User = require('../models/user');
-const LocalStrategy = require('passport-local').Strategy;
-const { validationResult } = require('express-validator');
+const passport = require("passport");
+const User = require("../models/user");
+const LocalStrategy = require("passport-local").Strategy;
+const { validationResult } = require("express-validator");
 
 const ERRORS_MESSAGES = {
-  email: 'Email is invalid',
-  password: 'Password should be 4 symbols min',
+  email: "Email is invalid",
+  password: "Password should be 4 symbols min",
 };
 
 passport.serializeUser(function (user, done) {
@@ -19,11 +19,11 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(
-  'local.signup',
+  "local.signup",
   new LocalStrategy(
     {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: "email",
+      passwordField: "password",
       passReqToCallback: true,
     },
     function singUp(req, email, password, done) {
@@ -36,7 +36,7 @@ passport.use(
           messages.push(ERRORS_MESSAGES[error.param]);
         });
 
-        return done(null, false, req.flash('error', messages));
+        return done(null, false, req.flash("error", messages));
       }
       User.findOne({ email: email }, function (err, user) {
         if (err) {
@@ -44,7 +44,7 @@ passport.use(
         }
 
         if (user) {
-          return done(null, false, { message: 'Email is already in use.' });
+          return done(null, false, { message: "Email is already in use." });
         }
 
         const newUser = new User();
@@ -58,16 +58,16 @@ passport.use(
           return done(null, newUser);
         });
       });
-    }
-  )
+    },
+  ),
 );
 
 passport.use(
-  'local.signin',
+  "local.signin",
   new LocalStrategy(
     {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: "email",
+      passwordField: "password",
       passReqToCallback: true,
     },
     function signIn(req, email, password, done) {
@@ -81,11 +81,11 @@ passport.use(
           messages.push(ERRORS_MESSAGES[error.param]);
         });
 
-        return done(null, false, req.flash('error', messages));
+        return done(null, false, req.flash("error", messages));
       }
 
       User.findOne({ email: email }, function (err, user) {
-        const message = { message: 'Wrong email or password' };
+        const message = { message: "Wrong email or password" };
 
         if (err) {
           return done(err);
@@ -98,9 +98,9 @@ passport.use(
         if (!user.validPassword(password)) {
           return done(null, false, message);
         }
-        
+
         return done(null, user);
       });
-    }
-  )
+    },
+  ),
 );

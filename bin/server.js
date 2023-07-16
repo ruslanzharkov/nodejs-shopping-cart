@@ -42,9 +42,10 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof normalizedPort === 'string'
-    ? 'Pipe ' + normalizedPort
-    : 'Port ' + normalizedPort;
+  var bind =
+    typeof normalizedPort === 'string'
+      ? 'Pipe ' + normalizedPort
+      : 'Port ' + normalizedPort;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -67,8 +68,7 @@ function onError(error) {
 
 function onListening() {
   const address = server.address();
-  const bind = typeof address === 'string'
-    ? 'pipe ' + address
-    : 'port ' + address.port;
+  const bind =
+    typeof address === 'string' ? 'pipe ' + address : 'port ' + address.port;
   debug('Listening on ' + bind);
 }

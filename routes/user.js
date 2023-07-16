@@ -67,7 +67,7 @@ router.post(
     } else {
       res.redirect('/user/profile');
     }
-  }
+  },
 );
 
 router.get('/signin', function (req, res) {
@@ -95,7 +95,7 @@ router.post(
     } else {
       res.redirect('/user/profile');
     }
-  }
+  },
 );
 
 module.exports = router;

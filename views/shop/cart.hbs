@@ -1,43 +1,55 @@
-{{# if products}}
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="list-group">
-                {{# each products }}
-                    <div class="list-group-item border">
-                        <strong>{{ this.item.title }}</strong>
-                        <span class="badge price-cart">${{ this.price }}</span>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-raised btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="cart/reduce/{{ this.item._id }}">Reduce by 1</a>
-                                <a class="dropdown-item" href="cart/remove/{{ this.item._id }}">Remove All</a>
-                            </div>
-                        </div>
-                        <span class="total">{{ this.qty }}</span>
-                    </div>
-                {{/each}}
+{{#if products}}
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="list-group">
+        {{#each products}}
+          <div class="list-group-item border">
+            <strong>{{this.item.title}}</strong>
+            <span class="badge price-cart">${{this.price}}</span>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-raised btn-info dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Action
+              </button>
+              <div class="dropdown-menu">
+                <a
+                  class="dropdown-item"
+                  href="cart/reduce/{{this.item._id}}"
+                >Reduce by 1</a>
+                <a
+                  class="dropdown-item"
+                  href="cart/remove/{{this.item._id}}"
+                >Remove All</a>
+              </div>
             </div>
-        </div>
+            <span class="total">{{this.qty}}</span>
+          </div>
+        {{/each}}
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <strong>Total: {{ totalPrice }}</strong>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <strong>Total: {{totalPrice}}</strong>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <a href="/checkout" class="btn btn-raised  btn-success">Checkout</a>
-        </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <a href="/checkout" class="btn btn-raised btn-success">Checkout</a>
     </div>
+  </div>
 {{else}}
-    <div class="empty">
-        <h2>Oops, your cart is empty</h2>
-        <img src="/icons/empty-cart.svg" alt="Empty cart">
-    </div>
+  <div class="empty">
+    <h2>Oops, your cart is empty</h2>
+    <img src="/icons/empty-cart.svg" alt="Empty cart" />
+  </div>
 {{/if}}

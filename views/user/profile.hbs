@@ -1,24 +1,26 @@
-{{# if orders}}
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 main">
-            <h1>User Profile</h1>
-            <hr>
-            <h2>My Orders</h2>
-            {{#each orders}}
-                <ul class="list-group">
-                    {{#each this.items}}
-                        <li class="list-group-item border">{{ this.item.title }} ({{ this.qty }}) - {{ this.price }}$</li>
-                    {{/each}}
-                    <li class="list-group-item list-group-item-success">Total price: ${{ this.totalPrice }}</li>
-                </ul>
-            {{/each}}
-            {{ this.totalPrice }}
-        </div>
+{{#if orders}}
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 main">
+      <h1>User Profile</h1>
+      <hr />
+      <h2>My Orders</h2>
+      {{#each orders}}
+        <ul class="list-group">
+          {{#each this.items}}
+            <li class="list-group-item border">{{this.item.title}}
+              ({{this.qty}}) -
+              {{this.price}}$</li>
+          {{/each}}
+          <li class="list-group-item list-group-item-success">Total price: ${{this.totalPrice}}</li>
+        </ul>
+      {{/each}}
+      {{this.totalPrice}}
     </div>
+  </div>
 {{else}}
-    <div class="empty">
-        <h2>Your orders are empty</h2>
-        <img src="/icons/empty-list.svg" alt="Empty orders">
-    </div>
+  <div class="empty">
+    <h2>Your orders are empty</h2>
+    <img src="/icons/empty-list.svg" alt="Empty orders" />
+  </div>
 {{/if}}

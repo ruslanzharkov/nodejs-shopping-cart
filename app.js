@@ -41,7 +41,7 @@ app.use(
       mongoUrl: mongoDbUrl,
     }),
     cookie: { maxAge: 180 * 60 * 1000 },
-  })
+  }),
 );
 app.use(flash());
 app.use(passport.initialize());
