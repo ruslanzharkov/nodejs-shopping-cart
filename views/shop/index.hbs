@@ -8,24 +8,22 @@
 
 <div class="games">
     {{# each products }}
-            {{# each this}}
-                <div class="game">
-                    <div class="card thumbnail">
-                        <img class="card-img-top shop-image img-fluid" src="{{ this.imagePath }}" alt="Card image">
-                        <div class="card-block">
-                            <h4 class="card-title">{{ this.title }}</h4>
-                            <p class="card-text product-description">
-                                {{ this.description }}
-                            </p>
-                            <div class="clearfix">
-                                <div class="price pull-left">{{ this.price }}</div>
-                                <a href="/cart/add-to-cart/{{this._id}}" class="btn btn-raised btn-success pull-right">
-                                    <i class="fa fa-gift" aria-hidden="true"></i> Add to cart
-                                </a>
-                            </div>
-                        </div>
+        <div class="game">
+            <div class="card thumbnail">
+                <img class="card-img-top shop-image img-fluid" src="{{ this.imagePath }}" alt="Card image">
+                <div class="card-block">
+                    <h4 class="card-title">{{ this.title }}</h4>
+                    <p class="card-text product-description">
+                        {{ this.description }}
+                    </p>
+                    <div class="clearfix">
+                        <div class="price pull-left">{{ this.price }}</div>
+                        <a href="/cart/add-to-cart/{{this._id}}" class="btn btn-raised btn-success pull-right">
+                            <i class="fa fa-gift" aria-hidden="true"></i> Add to cart
+                        </a>
                     </div>
                 </div>
-            {{/each}}
+            </div>
+        </div>
     {{/each}}
 </div>

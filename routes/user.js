@@ -11,6 +11,7 @@ const Cart = require('../models/cart');
 const csrfProtection = csrf();
 router.use(csrfProtection);
 
+// GET profile page
 router.get('/profile', isLoggedIn, function (req, res) {
   Order.find({ user: req.user }, function (err, orders) {
     if (err) {
@@ -28,6 +29,7 @@ router.get('/profile', isLoggedIn, function (req, res) {
   });
 });
 
+// GET logout
 router.get('/logout', isLoggedIn, function (req, res, next) {
   req.logout(function logoutCallback(err) {
     if (err) {
@@ -42,6 +44,7 @@ router.use('/', notLoggedIn, function (req, res, next) {
   next();
 });
 
+// GET sign up page
 router.get('/signup', function (req, res) {
   const messages = req.flash('error');
   res.render('user/signup', {
@@ -51,6 +54,7 @@ router.get('/signup', function (req, res) {
   });
 });
 
+// POST sign up action route
 router.post(
   '/signup',
   body('email').notEmpty().isEmail(),
@@ -70,6 +74,7 @@ router.post(
   },
 );
 
+// GET sign in page
 router.get('/signin', function (req, res) {
   const messages = req.flash('error');
   res.render('user/signin', {
@@ -79,6 +84,7 @@ router.get('/signin', function (req, res) {
   });
 });
 
+// POST sign in action route
 router.post(
   '/signin',
   body('email').notEmpty().isEmail(),
