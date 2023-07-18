@@ -2,11 +2,12 @@
 
 ![image](https://user-images.githubusercontent.com/28437795/124288418-d3633a80-db59-11eb-8ecd-f01dba239fb7.png)
 
-This project work with Stripe api for Nodejs. Go to http://stripe.com/ for more information
+This project works with Stripe api on Nodejs and on the client representation as well.
+Go to [Stripe](http://stripe.com/) for more information
 
 ## Requirements
 
-- mongodb with Robo3T or MongoDB Compass
+- [community mongodb installed locally](https://www.mongodb.com/docs/manual/administration/install-community/) or [cloud version](https://www.mongodb.com/atlas/database)
 - node.js
 - account on Stripe.js (for your test purchases)
 
@@ -19,8 +20,9 @@ This project work with Stripe api for Nodejs. Go to http://stripe.com/ for more 
 
 ## Migrations
 
-Current app implementation doesn't have UI for adding new products, <br/>
-but you can run script with migrations for add some data into DB and get it from UI.
+Current app implementation doesn't have a UI for adding new products,
+but you can run script with migrations to add some products into DB and receive it from the application's UI.
+Make sure MongoDB is installed and running first.
 
 ```npm
 npm run migration:write
