@@ -1,8 +1,15 @@
-/** Publishable key is not secret, is ok to store it here.
+/** Publishable key is not secret, it's ok to store it here.
  * Check https://stripe.com/docs/keys
  */
-const stripePublishableTestKey =
-  'pk_test_51FYrarBN5IAKGjenKteTJY5sFDZuA3tAXQBGHoY5UxXDFwOMPM1f1t8SxFZe154LTynK9VBtfkppTYFlgx4ZXS1Y00WJUHRZDg';
+const stripePublishableTestKey = null;
+// your public key should be here for proper Stripe work
+// otherwise app generates en error with alert message
+
+if (!stripePublishableTestKey) {
+  const error = 'Please add a Stripe.js public key';
+  alert(error);
+  throw new Error(error);
+}
 
 Stripe.setPublishableKey(stripePublishableTestKey);
 
@@ -26,15 +33,15 @@ $form.submit(function (event) {
 
 function stripeResponseHandler(status, response) {
   if (response.error) {
-    // Show the errors on the form and re-enable submission
+    // Show errors on the form and re-enable submission
     $('#charge-error').text(response.error.message);
     $('#charge-error').removeClass('invisible');
     $form.find('button').prop('disabled', false);
   } else {
-    // Token was created and we can proceed
+    // Token has been created, we can proceed
     const token = response.id;
 
-    // Insert the token into the form so it gets submitted to the server:
+    // Insert the token into the form so it can be submitted to server:
     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
     $form.get(0).submit();
   }

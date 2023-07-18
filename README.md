@@ -34,8 +34,24 @@ Before running the app, you should create your own `.env` file in the root with 
 
 ```dotenv
 PORT=<place your port here>
-STRIPE_SECRET_KEY=<your stripe test key>
+STRIPE_SECRET_KEY=<your stripe secret test key for server>
 MONGO_DB_URL='mongodb://127.0.0.1:27017' or remote mongo address
+```
+
+Note: make sure to add publc stripe key to `public/javascripts/checkout.js` in order to configure both server and client parts of Stripe.
+
+```javascript
+const stripePublishableTestKey = null;
+// your public key should be here for proper Stripe work
+// otherwise app generates en error with alert message
+
+if (!stripePublishableTestKey) {
+  const error = 'Please add a Stripe.js public key';
+  alert(error);
+  throw new Error(error);
+}
+
+Stripe.setPublishableKey(stripePublishableTestKey);
 ```
 
 ### Running
