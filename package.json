@@ -20,7 +20,7 @@
     "express-handlebars": "^5.3.1",
     "express-session": "^1.15.6",
     "express-validator": "^6.14.0",
-    "hbs": "^4.1.1",
+    "hbs": "^4.2.1",
     "mongoose": "^8.9.5",
     "morgan": "~1.9.0",
     "passport": "^0.6.0",
